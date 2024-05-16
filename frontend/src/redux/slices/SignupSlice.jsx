@@ -1,4 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
 import axios from "axios";
 
 export const signupUser = createAsyncThunk(
@@ -13,15 +14,14 @@ export const signupUser = createAsyncThunk(
         password: password,
       };
 
-      const response = axios.post(url, params, {
+      const response = await axios.post(url, params, {
         headers: { "Content-Type": "application/json" },
       });
 
-      let data = await response.data;
+      let data =  response.data;
       console.log("Data", data);
 
-      if (data.data.status === 201) {
-     
+      if (response.status === 201) {
         localStorage.setItem("token", data.token);
         return data;
       } else {
@@ -61,6 +61,7 @@ export const SignupSlice = createSlice({
         state.token = payload.token;
         state.isFetching = false;
         state.isSuccess = true;
+        state.isError = false;
         return state;
       })
       .addCase(signupUser.rejected, (state, { payload }) => {

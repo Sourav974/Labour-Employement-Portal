@@ -1,4 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
 import axios from "axios";
 
 export const loginUser = createAsyncThunk(
@@ -18,7 +19,7 @@ export const loginUser = createAsyncThunk(
 
       let data = response.data;
 
-      if (response.status === 200) {
+      if (response.status === 200 || response.status === 201) {
         localStorage.setItem("token", data.token);
         return data;
       } else {

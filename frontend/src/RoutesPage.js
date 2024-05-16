@@ -1,13 +1,19 @@
-import React from "react";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+import { Route, Routes } from "react-router-dom";
+
+import Dashboard from "./pages/Dashboard";
 import ForgotPassword from "./pages/ForgotPassword";
+import Login from "./pages/Login";
+import PrivateRoute from "./PrivateRoute";
+import React from "react";
+import Signup from "./pages/Signup";
+import { useSelector } from "react-redux";
+
 // import Dashboard from "./pages/Dashboard";
 
-import { Routes, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
-import Dashboard from "./pages/Dashboard";
-import PrivateRoute from "./PrivateRoute";
+
+
+
+
 
 const RoutesPage = () => {
   //   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
