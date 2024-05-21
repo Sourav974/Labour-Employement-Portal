@@ -10,11 +10,6 @@ import { useSelector } from "react-redux";
 
 // import Dashboard from "./pages/Dashboard";
 
-
-
-
-
-
 const RoutesPage = () => {
   //   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   //   console.log("authemticated", isAuthenticated);

@@ -20,6 +20,7 @@ import {
   loginSelector,
   clearState,
 } from "../redux/slices/LoginSlice";
+import { ToastContainer, toast } from "react-toastify";
 
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -35,6 +36,12 @@ export default function Login() {
   const navigate = useNavigate();
   const { isFetching, isSuccess, isError, errorMessage } =
     useSelector(loginSelector);
+
+  const showToastMessage = () => {
+    toast.success("Success Notification !", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
 
   const handleSubmit = (data) => {
     dispatch(loginUser(data));
@@ -116,6 +123,7 @@ export default function Login() {
                     </Stack>
                     {isFetching ? (
                       <Button
+                        onClick={showToastMessage}
                         isLoading
                         loadingText="Signing in"
                         type="submit"

@@ -22,12 +22,18 @@ export const loginUser = createAsyncThunk(
       if (response.status === 200 || response.status === 201) {
         localStorage.setItem("token", data.token);
         return data;
-      } else {
-        return thunkAPI.rejectWithValue(data);
       }
     } catch (error) {
-      console.log("Error", error.response.data);
-      thunkAPI.rejectWithValue(error.response.data);
+      // console.log("Error", error.response.data);
+      // thunkAPI.rejectWithValue("thunk error", error.response.data);
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
     }
   }
 );
